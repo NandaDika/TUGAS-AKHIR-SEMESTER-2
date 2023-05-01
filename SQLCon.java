@@ -8,6 +8,7 @@ public class SQLCon {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/terbanginaja_db";
     private static final String USER  = "root";
     private static final String PASS = "";
+    protected static SQLException ex_stat;
 
     private static Connection connect;
 
@@ -82,9 +83,11 @@ public class SQLCon {
            int numRowsAffected = statement1.executeUpdate();
             }
             
+            
         } catch(SQLException ex){
             if(ex.getSQLState().equals("45000")) {
-                JOptionPane.showMessageDialog(null, "MAAF DATA ANDA SUDAH TERDAFTAR", "DUPLIKASI DATA", JOptionPane.WARNING_MESSAGE);
+                
+                ex_stat = ex;
                }
         }catch (Exception e) {
             System.out.println(e);

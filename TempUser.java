@@ -1,5 +1,4 @@
 
-
 public class TempUser {
     protected static volatile String nama_user = "", nik_user = "", hari = "", bulan = "", tahun = "", kota = "", seat = "", maskapai = "";
     protected volatile String harga = "";
@@ -7,6 +6,8 @@ public class TempUser {
     protected static volatile String ID = "", PASS = "";
     double hargaDasar = 300000;
     protected static String tanggal = "";
+
+    
     public void hitungHarga(){
         double hMaskapai = 0;
         if(maskapai == "Garuda"){

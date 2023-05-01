@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,10 +16,13 @@ public class FrameAdmin implements ActionListener {
         // Set the size of the frame
         frame = new JFrame("TerbangIn-Aja!");
         frame.setSize(1366, 768);
+        frame.setIconImage(new ImageIcon(getClass().getResource("Icon.png")).getImage());
+        frame.setResizable(false);
 
         // Create a panel for the top of the frame
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new FlowLayout());
+        
 
         // Create a label and a text field for the new password
         newPasswordLabel = new JLabel("New Password:");
@@ -48,8 +52,14 @@ public class FrameAdmin implements ActionListener {
 
         SQLCon.setTable(model);
 
+        JScrollPane scpane = new JScrollPane(dataTable);
+        scpane.setBorder (BorderFactory.createTitledBorder (BorderFactory.createEtchedBorder (),
+        "Data Pembelian dan Status Pengguna",
+        TitledBorder.CENTER,
+        TitledBorder.TOP));
+
         // Add the table to the center of the frame
-        frame.add(new JScrollPane(dataTable), BorderLayout.CENTER);
+        frame.add(scpane, BorderLayout.CENTER);
 
         // Add the top panel to the top of the frame
         frame.add(topPanel, BorderLayout.NORTH);

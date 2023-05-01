@@ -20,6 +20,8 @@ public class Frame2 implements ActionListener {
         frame.setBackground(new Color(250, 250, 250));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new GridBagLayout());
+        frame.setIconImage(new ImageIcon(getClass().getResource("Icon.png")).getImage());
+        frame.setResizable(false);
 
         // Panel untuk menempatkan komponen di tengah
         JPanel panel = new JPanel(new GridBagLayout());
@@ -32,7 +34,7 @@ public class Frame2 implements ActionListener {
         gbc.insets = new Insets(10, 10, 10, 10); // padding
         
 
-        ImageIcon imageIcon = new ImageIcon(Master.logo);
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource(Master.logo));
         imageLabel = new JLabel(imageIcon);
         panel.add(imageLabel, gbc);
 

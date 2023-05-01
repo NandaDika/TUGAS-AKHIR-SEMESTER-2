@@ -14,7 +14,7 @@ public class Frame1 implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1366, 768);
         frame.setBackground(new Color(250, 250, 250));
-        
+        frame.setResizable(false);
         
         //Membuat panel
         JPanel panel = new JPanel(new GridBagLayout());

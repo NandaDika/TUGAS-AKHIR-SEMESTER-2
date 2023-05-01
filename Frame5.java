@@ -3,7 +3,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Frame5 implements ActionListener{
+public class Frame5 extends Master implements ActionListener{
     private JButton cancelButton = new JButton("Cancel");
     private JFrame frame = new JFrame();
     private JButton confirmButton = new JButton("Confirm");
@@ -13,9 +13,11 @@ public class Frame5 implements ActionListener{
 
     public Frame5() {
         
-        frame.setTitle("Bill Payment Form");
+        frame.setTitle("TerbangIn-Aja!");
         frame.setLayout(null);
         frame.setPreferredSize(new Dimension(1366, 768));
+        frame.setIconImage(new ImageIcon(getClass().getResource("Icon.png")).getImage());
+        frame.setResizable(false);
 
         /*JLabel titleLabel = new JLabel("Bill Payment Form", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
@@ -73,17 +75,28 @@ public class Frame5 implements ActionListener{
             new Frame4();
             frame.setVisible(false);
         } else if(e.getSource()==confirmButton){
-            
-            if(Integer.parseInt(paymentTextField.getText())<userData.hargaInt){
-                JOptionPane.showMessageDialog(null, "Maaf, Uang yang anda masukkan kurang.", "INFORMASI", JOptionPane.INFORMATION_MESSAGE);
-            }else {
-                double HargaTemp = Integer.parseInt(paymentTextField.getText())-userData.hargaInt;
-                SQLCon.setData(TempUser.nama_user);
-                JOptionPane.showMessageDialog(null, "Terimakasih \nData Kamu Sudah Tersimpan\nSisa Kembalian: "+HargaTemp);
-                frame.setVisible(false);
-                userData.clearData();
-                new Frame1();
+
+            if(isNumeric(paymentTextField.getText())){
+                if(Integer.parseInt(paymentTextField.getText())<userData.hargaInt){
+                    JOptionPane.showMessageDialog(null, "Maaf, Uang yang anda masukkan kurang.", "INFORMASI", JOptionPane.INFORMATION_MESSAGE);
+                }else {
+                    SQLCon.setData(TempUser.nama_user);
+                    if(SQLCon.ex_stat.getSQLState().equals("45000")){
+                        JOptionPane.showMessageDialog(null, "MAAF DATA ANDA SUDAH TERDAFTAR", "DUPLIKASI DATA", JOptionPane.WARNING_MESSAGE);
+                    } else{
+                        double HargaTemp = Integer.parseInt(paymentTextField.getText())-userData.hargaInt;
+                        JOptionPane.showMessageDialog(null, "Terimakasih \nData Kamu Sudah Tersimpan\nSisa Kembalian: "+HargaTemp);
+                        frame.setVisible(false);
+                        userData.clearData();
+                        new Frame1();
+                    }
+                    
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Maaf, Input uang salah.", "INFORMASI", JOptionPane.INFORMATION_MESSAGE);
             }
+            
+            
         }
     }   
 

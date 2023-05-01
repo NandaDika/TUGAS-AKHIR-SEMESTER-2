@@ -33,7 +33,10 @@ public class Frame4 extends TempUser implements ActionListener{
         frame.setLayout(null); // Use null layout manager for manual positioning
         JLabel logo = new JLabel(new ImageIcon(getClass().getResource(Master.menu)));
         logo.setBounds(150, 0, 1000, 200);
+        frame.setIconImage(new ImageIcon(getClass().getResource("Icon.png")).getImage());
+        frame.setResizable(false);
         frame.add(logo);
+
 
         //Layer Background
         JPanel backPanel = new JPanel();
@@ -131,7 +134,7 @@ public class Frame4 extends TempUser implements ActionListener{
 
         // Create radioGroupPanel
         JPanel radioGroupPanel = new JPanel();
-        radioGroupPanel.setBounds(950, 140, 200, 630);
+        radioGroupPanel.setBounds(1050, 140, 200, 630);
         radioGroupPanel.setLayout(new BoxLayout(radioGroupPanel, BoxLayout.Y_AXIS)); // Use BoxLayout for vertical alignment
         radioGroupPanel.setOpaque(false);
 
@@ -183,9 +186,12 @@ public class Frame4 extends TempUser implements ActionListener{
         
         buttonPanel.add(cancelButton);
         cancelButton.addActionListener(this);
+        cancelButton.setBackground(new Color(26, 107, 217));
+        cancelButton.setForeground(Color.WHITE);
         
         // Add Order button
-        
+        orderButton.setBackground(new Color(26, 107, 217));
+        orderButton.setForeground(Color.WHITE);
         orderButton.addActionListener(this);
         buttonPanel.add(orderButton);
         
@@ -232,11 +238,14 @@ public class Frame4 extends TempUser implements ActionListener{
             premiumEconomyClassRadioButton.setIcon(new ImageIcon(getClass().getResource("LionNS.png")));
           //  maskapai = "";
         }
+       
 
         if(e.getSource()==orderButton){
 
             if(nameTextField.getText().isEmpty() || idTextField.getText().isEmpty() || maskapai == ""){
                 JOptionPane.showMessageDialog(null, "Field Harus Diisi", "Peringatan!!!", JOptionPane.WARNING_MESSAGE);
+            }else if(Master.isNumeric(idTextField.getText())==false){
+                JOptionPane.showMessageDialog(null, "NIK Harus berisi angka", "Peringatan!!!", JOptionPane.WARNING_MESSAGE);
             }else{
                 nama_user = nameTextField.getText();
                 nik_user = idTextField.getText();

@@ -11,8 +11,10 @@ private JButton btnKembali, btnBatal, btnIn;
 private String isiTextArea;
 public Frame3()
 {
-super("MENGGUNAKAN TEXT AREA");
+super("TerbangIn-Aja");
 setSize(400,500);
+setIconImage(new ImageIcon(getClass().getResource("Icon.png")).getImage());
+setResizable(false);
 //menugaskan objek
 
 SQLCon.getData();
