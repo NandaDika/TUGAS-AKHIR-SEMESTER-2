@@ -8,7 +8,7 @@ public class SQLCon {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/terbanginaja_db";
     private static final String USER  = "root";
     private static final String PASS = "";
-    protected static SQLException ex_stat;
+    protected static String sqlState;
 
     private static Connection connect;
 
@@ -58,10 +58,7 @@ public class SQLCon {
     protected static void setData(String x){
         try {
         String nama;
-        TempUser.ID = master.setID();
         nama = x;
-        TempUser.PASS = master.setPass();
-           
            String sql2 = "INSERT INTO transaksi(id_user, nama, nik, id_maskapai, tanggal, tujuan, status) VALUES (?,?,?,?,?,?,?)";
            PreparedStatement statement2 = connect.prepareStatement(sql2);
            statement2.setString(1, TempUser.ID);
@@ -87,7 +84,8 @@ public class SQLCon {
         } catch(SQLException ex){
             if(ex.getSQLState().equals("45000")) {
                 
-                ex_stat = ex;
+                sqlState = ex.getSQLState();
+                
                }
         }catch (Exception e) {
             System.out.println(e);

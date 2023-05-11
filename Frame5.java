@@ -65,10 +65,24 @@ public class Frame5 extends Master implements ActionListener{
 
 
     public void dataUpload(){
-        String isiText = "ID:"+TempUser.ID+"\nPassword: "+TempUser.PASS+"\nNama: "+TempUser.nama_user+"\nNIK: "+TempUser.nik_user+"\nMaskapai: "+TempUser.maskapai+"\nTanggal Keberangkatan: "+TempUser.hari+" "+TempUser.bulan+" "+TempUser.tahun+"\nTipe Kursi: "+TempUser.seat+"\nRute: "+TempUser.kota+"\nTotal Harga Tiket: "+userData.harga;
+        String jamTerbang = "";
+        if(TempUser.maskapai=="Batik"){
+            jamTerbang = "16:00:00";
+        }else if(TempUser.maskapai == "Asia"){
+            jamTerbang = "19:00:00";
+        }else if (TempUser.maskapai == "Garuda"){
+            jamTerbang = "06:00:00";
+        }else if(TempUser.maskapai == "Lion"){
+            jamTerbang = "12:00:00";
+        }
+        String isiText = "ID:"+TempUser.ID+"\nPassword: "+TempUser.PASS+"\nNama: "+TempUser.nama_user+"\nNIK: "+TempUser.nik_user+"\nMaskapai: "+TempUser.maskapai+"\nTanggal Keberangkatan: "+TempUser.hari+" "+TempUser.bulan+" "+TempUser.tahun+"\nTipe Kursi: "+TempUser.seat+"\nRute: "+TempUser.kota+"\nJam Keberangkatan:"+jamTerbang+"\nTotal Harga Tiket: "+userData.harga;
         billTextArea.append(isiText);
+
+        
     }
 
+
+    @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource()==cancelButton){
             userData.clearData();
@@ -81,9 +95,9 @@ public class Frame5 extends Master implements ActionListener{
                     JOptionPane.showMessageDialog(null, "Maaf, Uang yang anda masukkan kurang.", "INFORMASI", JOptionPane.INFORMATION_MESSAGE);
                 }else {
                     SQLCon.setData(TempUser.nama_user);
-                    if(SQLCon.ex_stat.getSQLState().equals("45000")){
+                    if(SQLCon.sqlState != null && SQLCon.sqlState.equals("45000")){
                         JOptionPane.showMessageDialog(null, "MAAF DATA ANDA SUDAH TERDAFTAR", "DUPLIKASI DATA", JOptionPane.WARNING_MESSAGE);
-                    } else{
+                   }else{
                         double HargaTemp = Integer.parseInt(paymentTextField.getText())-userData.hargaInt;
                         JOptionPane.showMessageDialog(null, "Terimakasih \nData Kamu Sudah Tersimpan\nSisa Kembalian: "+HargaTemp);
                         frame.setVisible(false);

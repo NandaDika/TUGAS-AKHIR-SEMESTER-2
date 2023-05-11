@@ -65,6 +65,7 @@ public class FrameAdmin implements ActionListener {
         frame.add(topPanel, BorderLayout.NORTH);
 
         backButton = new JButton("Kembali");
+        dataTable.setEnabled(false);
         frame.add(backButton, BorderLayout.SOUTH);
 
         backButton.addActionListener(this);

@@ -85,6 +85,8 @@ public class Frame2 implements ActionListener {
         frame.setLocationRelativeTo(null); // Menempatkan frame di tengah layar
     }
 
+
+    @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource()==btnMasuk){
             String myPass = String.valueOf(txtPassword.getPassword());

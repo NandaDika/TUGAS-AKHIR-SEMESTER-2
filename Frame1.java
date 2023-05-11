@@ -11,6 +11,7 @@ public class Frame1 implements ActionListener {
     protected Master Master = new Master();
     public Frame1(){
         frame = new JFrame("Terbang-In Aja!");
+        frame.setIconImage(new ImageIcon(getClass().getResource("Icon.png")).getImage());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1366, 768);
         frame.setBackground(new Color(250, 250, 250));
@@ -53,6 +54,8 @@ public class Frame1 implements ActionListener {
         frame.setVisible(true);
     }
 
+
+    @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource()==pesanButton){
             new Frame4();

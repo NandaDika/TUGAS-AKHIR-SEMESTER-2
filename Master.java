@@ -8,6 +8,7 @@ public class Master {
     public String logo2 = "Logo2.png";
     public String menu = "Menu.png";
     public String bg = "Background.png";
+    
     public void setUser(String id, String password){
         user = id;
         pass = password;
